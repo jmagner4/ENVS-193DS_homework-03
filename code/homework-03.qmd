@@ -21,17 +21,31 @@ temp_kelp <- read_csv(here("data", "temp-kelp.csv"))
 
 # Problems
 ## Problem 1. Giant Kelp Fronds
-### a. 
+### a. An Appropriate Test
 Pearson and Spearman correlations could be used to determine strength of the relationship between temperature and giant kelp frond elongation rate assuming observations are independent.
 Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
 
 ### b. Visualizing Data
-
 ```{r}
-ggplot(data = )
+# base layer ggplot
+ggplot(data = temp_kelp,
+       # assign data to axes
+       aes(x = temp_c,
+           y = kelp_elong))+
+# first layer: add points
+  geom_point(color = "dodgerblue3")+
+# relabel axis wiht units
+  labs(x = "Temperature (°C)",
+       y = "Giant Kelp Frond Growth Rate (cm/day)")+
+  theme_light()
 ```
 
-### c.
+### c. Check Assumptions
+```{r}
+
+```
+
+
 ### d.
 ### e.
 ### f.
