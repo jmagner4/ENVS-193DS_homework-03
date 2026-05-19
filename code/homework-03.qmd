@@ -1,5 +1,47 @@
 ---
 title: "homework-03"
-format: html
+format: PDF
+author: Jocelyn Magner
+date: 5/20/2026
 ---
+
+# Set up
+```{r}
+library(tidyverse)
+library(here)
+library(janitor)
+library(readxl)
+
+# store personal data
+personal_data <- read_csv("personaldataproject.csv")
+```
+
+# Problems
+## Problem 1. Giant Kelp Fronds
+### a. 
+Pearson and Spearman correlations could be used to determine strength of the relationship between temperature and giant kelp frond elongation rate assuming observations are independent.
+Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
+
+### b.
+### c.
+### d.
+### e.
+### f.
+
+## Problem 2. Personal Data
+### a.
+### b.
+
+## Problem 3. Affective Visualization
+### a.
+### b.
+### c.
+### d.
+### e.
+
+## Problem 4. Statistical Critique
+### a.
+### b.
+### c.
+### d.
 
