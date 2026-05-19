@@ -13,7 +13,10 @@ library(janitor)
 library(readxl)
 
 # store personal data
-personal_data <- read_csv("personaldataproject.csv")
+personal_data <- read_csv(here( "data" , "personaldataproject.csv"))
+
+# store kelp data
+temp_kelp <- read_csv(here("data", "temp-kelp.csv"))
 ```
 
 # Problems
@@ -22,7 +25,12 @@ personal_data <- read_csv("personaldataproject.csv")
 Pearson and Spearman correlations could be used to determine strength of the relationship between temperature and giant kelp frond elongation rate assuming observations are independent.
 Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
 
-### b.
+### b. Visualizing Data
+
+```{r}
+ggplot(data = )
+```
+
 ### c.
 ### d.
 ### e.
