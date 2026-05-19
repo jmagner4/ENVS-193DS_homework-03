@@ -27,6 +27,8 @@ Pearson's correlation also assumes a linear relationship exists and it is a para
 
 ### b. Visualizing Data
 ```{r}
+# plot raw data points to observe potential relationship
+
 # base layer ggplot
 ggplot(data = temp_kelp,
        # assign data to axes
@@ -37,10 +39,37 @@ ggplot(data = temp_kelp,
 # relabel axis wiht units
   labs(x = "Temperature (°C)",
        y = "Giant Kelp Frond Growth Rate (cm/day)")+
-  theme_light()
+#change theme
+    theme_light()
+# data appears fairly linear, proceed with diagnostic tests
 ```
 
-### c. Check Assumptions
+```{r}
+# create object storing linear model data to perform diagnostic tests
+temp_kelp_model <- lm(temp_c~kelp_elong,
+   data = temp_kelp)
+```
+
+```{r}
+# base R residuals
+par(mfrow = c(2,2))
+plot(temp_kelp_model)
+
+# observations appear fairly normal making it a good fit for Pearson Correlation tes
+```
+
+```{r}
+ggpredict(temp_kelp,
+          terms = "temp_c" [])|>
+  plot(show_data = TRUE)
+```
+
+
+### c. 
+### Check Assumptions
+
+### Run a correlation test
+
 ```{r}
 
 ```
