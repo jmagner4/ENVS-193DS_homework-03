@@ -121,8 +121,10 @@ We are not given much information about data collection, so I am going to assume
 
 ```{r}
 #| echo: true
-cor.test(temp_kelp$kelp_elong, temp_kelp$temp_c,
-method = "pearson")
+# Run Pearson Correlation test
+cor.test(temp_kelp$kelp_elong, # predicted/y value
+         temp_kelp$temp_c,     # predictor/x value
+         method = "pearson")
 ```
 
 
