@@ -1,8 +1,13 @@
 ---
 title: "homework-03"
-format: PDF
 author: Jocelyn Magner
 date: 5/20/2026
+format:
+  pdf:
+    toc: true #  display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
 ---
 
 # Set up
@@ -27,6 +32,29 @@ Pearson and Spearman correlations could be used to determine strength of the rel
 Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
 
 ### b. Visualizing Data
+
+```{r}
+#| echo: true
+# create object storing linear model data to perform diagnostic tests
+temp_kelp_model <- lm(kelp_elong~temp_c,
+   data = temp_kelp)
+
+# diagnostic plots
+par(mfrow = c(2,2))
+plot(temp_kelp_model)
+
+# display summary for model coefficients
+summary(temp_kelp_model)
+
+#creating new object called temp_kelp_preds
+temp_kelp_preds <- ggpredict(
+  temp_kelp_model,  # model object
+  terms = "temp_c") # predictor variable
+
+#display predictions 
+temp_kelp_preds
+```
+
 ```{r}
 # plot raw data points to observe potential relationship
 
@@ -36,58 +64,65 @@ ggplot(data = temp_kelp,
        aes(x = temp_c,
            y = kelp_elong))+
 # first layer: add points
-  geom_point(color = "dodgerblue3")+
-# relabel axis wiht units
+  geom_point(size = 2,
+             stroke = 0.5,
+             fill = "dodgerblue3",
+             shape = 21)+
+  
+# second layer: ribbon representing 95% CI
+# using predictions data frame
+geom_ribbon(data = temp_kelp_preds,
+            aes(x = x,
+                y = predicted,
+                ymin = conf.low,
+                ymax = conf.high),
+            alpha = 0.1) +
+# third layer: line representing model predictions
+# using predictions data frame
+geom_line(data = temp_kelp_preds,
+          aes (x = x,
+               y = predicted),
+          linewidth = 1) + 
+  
+# relabel axis with units
   labs(x = "Temperature (°C)",
        y = "Giant Kelp Frond Growth Rate (cm/day)")+
 #change theme
-    theme_light()
+    theme_light()+
+    theme(panel.grid = element_blank())
 # data appears fairly linear, proceed with diagnostic tests
 ```
 
-```{r}
-# create object storing linear model data to perform diagnostic tests
-temp_kelp_model <- lm(temp_c~kelp_elong,
-   data = temp_kelp)
-```
 
-```{r}
-# base R residuals
-par(mfrow = c(2,2))
-plot(temp_kelp_model)
+### c. Check Assumptions
+#### Assumptions of linear regression:
 
-# observations appear fairly normal making it a good fit for Pearson Correlation tes
-```
-
-```{r}
-ggpredict(
-  ?
+  • Linear relationship expected: A linear relationship is logical. I would expect as temperature increases kelp frond growth rate would decrease since they thrive in cool water.
   
-  
-  temp_kelp_model, terms = "temp_c [14:21 by=1]") %>% 
-  plot(show_data = TRUE)
-```
+• Independent errors: 
+We are not given much information about data collection, so I am going to assume there is no correlation between errors
 
+• Homoscedasticity: Looking at diagnostic plots in 1b, it appears the homoscedasticity of error is present since the points are roughly evenly and randomly distributed.
 
-### c. 
-### Check Assumptions
+• Normally Distributed Error: Looking at diagnostic plots in 1b, the QQ plot suggests normal distribution since the data follows the line closely.
 
-Assumptions of linear regression
-• Linear relationship expected: A linear relationship is logical. I would expect temperature to affect 
-• Independent errors
-• Homoscedasticity
-• Normally Distributed Error
+#### Assumption of Pearson's correlation
 
-Assumption of Pearson's correlation
- linear relationships between response and predictors
-• independent errors
-• homoscedastic errors (assessed using residuals)
-• normally distributed errors (assessed using residuals)
+• Linear relationship between variables: looking at the geom point graph it appears linear. By looking at the R^2 value calculated in 1b we can say 47% of the variability can be accounted for by the predictor variable (temperature) in the linear model summary. We can further assess the strength of the relationship with a correlation test.
+
+• Variables are continuous: Temperature and length are both continuous variables (they can be measured to decimal places or fractions)
+
+• Variables are normally distributed (discussed above)
+
+• Independent observations (discussed above)
+
 
 ### Run a correlation test
 
 ```{r}
-
+#| echo: true
+cor.test(temp_kelp$kelp_elong, temp_kelp$temp_c,
+method = "pearson")
 ```
 
 
