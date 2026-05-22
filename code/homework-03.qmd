@@ -75,21 +75,12 @@ plot(temp_kelp_model)
 
 #### Assumption of Pearson's correlation
 
-• Linear relationship between variables:
+To check the assumptions of a Pearson correlation test I evaluated the linearity, continuous data, normality and independence of observations. 
 
-Looking at the geom point graph from 1b. the relationship appears linear.
-
-• Variables are continuous: 
-
-Temperature and length are both continuous variables (they can be measured to decimal places or fractions).
-
-• Variables are normally distributed:
-
-Looking at diagnostic QQ plot, the data appears normally distributed since the data follows the line closely only deviating strongly in the tails which is acceptable.
-
-• Independent observations:
-
-Similar to the abalone observations presented in lecture, I think in order to have independent kelp frond growth observations they would need to be grown in individual tanks with specific regulated temperatures. Since the study averages temperatures and doesn't specify tanks or growing conditions this may not be completely met, but we are going to work with it.
+I checked linearity by looking at the scatter plot generated in 1b; if I drew a line from the lowest temp/highest growth rate point to one of the high-temp/low-growth points the data would fall around that line. 
+Temperature and growth rate are both continuous variables (they can be measured to decimal places or fractions). 
+Looking at diagnostic QQ plot, the data appears normally distributed since the data follows the line closely only deviating strongly in the tails which is acceptable. 
+Finally, the assumption of independent variables is a potential limitation since the study design does not explicitly say if the kelp fronds were isolated in separate, independently regulated tanks; however, we are going to proceed with the analysis.
 
 
 ### Run a correlation test
@@ -99,7 +90,7 @@ Similar to the abalone observations presented in lecture, I think in order to ha
 # Run Pearson Correlation test
 cor.test(temp_kelp$kelp_elong, # predicted/y value
          temp_kelp$temp_c,     # predictor/x value
-         method = "pearson")
+         method = "pearson")   # use pearson method
 ```
 
 
@@ -113,9 +104,20 @@ Temperature (in degrees Celsius) (Pearson's r = -0.69, t(30) = -5.19, p < 0.01, 
 
 ### e. Test Implications
 
-Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. Based on this information, to protect giant kelp populations, I would suggest targeting conservation efforts in the warmest environments.
+Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. To maximize conservation efforts I would suggest prioritizing protecting the cooler areas where kelp has higher chances of survival.
+
 
 ### f.
+```{r}
+#| echo: true
+# Run Pearson Correlation test
+cor.test(temp_kelp$kelp_elong, # predicted/y value
+         temp_kelp$temp_c,     # predictor/x value
+         method = "spearman")  # change method to spearman
+```
+
+Both of these test lead me to reject the null hypothesis because they both yielded a p-value < 0.01. Both methods lead to me to say there is a moderate-to-strong negative relationship between water temperature and giant kelp frond elongation rate because the Spearman rank coefficient ($\rho$ = -0.689) is close to the Pearson correlation coefficient (Pearson's r = -0.688). This directly relates to the variables by confirming that as the continuous variable of water temperature increases, the giant kelp frond elongation rate decreases, a trend that remains robust whether measured linearly (with Pearson) or monotonically through ranked data (with Spearman).
+
 
 ## Problem 2. Personal Data
 ### a.
