@@ -19,7 +19,7 @@ library(readxl)
 library(ggeffects)
 
 # store personal data
-personal_data <- read_csv(here( "data" , "personaldataproject.csv"))
+personal_data <- read_csv(here("data" , "personaldataproject.csv"))
 
 # store kelp data
 temp_kelp <- read_csv(here("data", "temp-kelp.csv"))
@@ -32,9 +32,38 @@ Pearson and Spearman correlations could be used to determine strength of the rel
 Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
 
 ### b. Visualizing Data
+Showing the relationship between temperature and giant kelp frond elongation rate.
+
+```{r}
+# plot raw data points to observe potential linear relationship
+
+# base layer ggplot
+ggplot(data = temp_kelp,
+       # assign data to axes
+       aes(x = temp_c,
+           y = kelp_elong))+
+# first layer: add scatter points
+  geom_point(size = 2,
+             stroke = 0.5,
+             fill = "dodgerblue3",
+             shape = 21)+
+  
+# relabel axis with units
+  labs(x = "Temperature (°C)",
+       y = "Giant Kelp Frond Growth Rate (cm/day)")+
+# change theme
+  theme_light()+
+  theme(panel.grid = element_blank())
+# data appears fairly linear, proceed with diagnostic tests
+```
+
+
+### c. Check Assumptions and Run Test
 
 ```{r}
 #| echo: true
+#| fig-width: 8
+#| fig-height: 8
 # create object storing linear model data to perform diagnostic tests
 temp_kelp_model <- lm(kelp_elong~temp_c,
    data = temp_kelp)
@@ -42,79 +71,25 @@ temp_kelp_model <- lm(kelp_elong~temp_c,
 # diagnostic plots
 par(mfrow = c(2,2))
 plot(temp_kelp_model)
-
-# display summary for model coefficients
-summary(temp_kelp_model)
-
-#creating new object called temp_kelp_preds
-temp_kelp_preds <- ggpredict(
-  temp_kelp_model,  # model object
-  terms = "temp_c") # predictor variable
-
-#display predictions 
-temp_kelp_preds
 ```
-
-```{r}
-# plot raw data points to observe potential relationship
-
-# base layer ggplot
-ggplot(data = temp_kelp,
-       # assign data to axes
-       aes(x = temp_c,
-           y = kelp_elong))+
-# first layer: add points
-  geom_point(size = 2,
-             stroke = 0.5,
-             fill = "dodgerblue3",
-             shape = 21)+
-  
-# second layer: ribbon representing 95% CI
-# using predictions data frame
-geom_ribbon(data = temp_kelp_preds,
-            aes(x = x,
-                y = predicted,
-                ymin = conf.low,
-                ymax = conf.high),
-            alpha = 0.1) +
-# third layer: line representing model predictions
-# using predictions data frame
-geom_line(data = temp_kelp_preds,
-          aes (x = x,
-               y = predicted),
-          linewidth = 1) + 
-  
-# relabel axis with units
-  labs(x = "Temperature (°C)",
-       y = "Giant Kelp Frond Growth Rate (cm/day)")+
-#change theme
-    theme_light()+
-    theme(panel.grid = element_blank())
-# data appears fairly linear, proceed with diagnostic tests
-```
-
-
-### c. Check Assumptions
-#### Assumptions of linear regression:
-
-  • Linear relationship expected: A linear relationship is logical. I would expect as temperature increases kelp frond growth rate would decrease since they thrive in cool water.
-  
-• Independent errors: 
-We are not given much information about data collection, so I am going to assume there is no correlation between errors
-
-• Homoscedasticity: Looking at diagnostic plots in 1b, it appears the homoscedasticity of error is present since the points are roughly evenly and randomly distributed.
-
-• Normally Distributed Error: Looking at diagnostic plots in 1b, the QQ plot suggests normal distribution since the data follows the line closely.
 
 #### Assumption of Pearson's correlation
 
-• Linear relationship between variables: looking at the geom point graph it appears linear. By looking at the R^2 value calculated in 1b we can say 47% of the variability can be accounted for by the predictor variable (temperature) in the linear model summary. We can further assess the strength of the relationship with a correlation test.
+• Linear relationship between variables:
 
-• Variables are continuous: Temperature and length are both continuous variables (they can be measured to decimal places or fractions)
+Looking at the geom point graph from 1b. the relationship appears linear.
 
-• Variables are normally distributed (discussed above)
+• Variables are continuous: 
 
-• Independent observations (discussed above)
+Temperature and length are both continuous variables (they can be measured to decimal places or fractions).
+
+• Variables are normally distributed:
+
+Looking at diagnostic QQ plot, the data appears normally distributed since the data follows the line closely only deviating strongly in the tails which is acceptable.
+
+• Independent observations:
+
+Similar to the abalone observations presented in lecture, I think in order to have independent kelp frond growth observations they would need to be grown in individual tanks with specific regulated temperatures. Since the study averages temperatures and doesn't specify tanks or growing conditions this may not be completely met, but we are going to work with it.
 
 
 ### Run a correlation test
@@ -128,8 +103,18 @@ cor.test(temp_kelp$kelp_elong, # predicted/y value
 ```
 
 
-### d.
-### e.
+### d. Results Communication
+
+To evaluate the strength of the relationship between temperature and giant kelp frond elongation rate, I used a Pearson's Correlation test.
+The data appears to be normally distributed based on the QQ plot diagnostic test meaning this parametric test is fitting.
+
+We found a moderate-to-strong negative relationship between giant kelp frond elongation rate (in cm/day) and
+Temperature (in degrees Celsius) (Pearson's r = -0.69, t(30) = -5.19, p < 0.01, α = 0.05).
+
+### e. Test Implications
+
+Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. Based on this information, to protect giant kelp populations, I would suggest targeting conservation efforts in the warmest environments.
+
 ### f.
 
 ## Problem 2. Personal Data
