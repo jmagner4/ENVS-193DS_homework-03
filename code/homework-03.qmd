@@ -19,7 +19,7 @@ library(readxl)
 library(ggeffects)
 
 # store personal data
-personal_data <- read_csv(here("data" , "personaldataproject.csv"))
+my_data <- read_csv(here("data" , "personaldataproject.csv"))
 
 # store kelp data
 temp_kelp <- read_csv(here("data", "temp-kelp.csv"))
@@ -121,6 +121,62 @@ Both of these test lead me to reject the null hypothesis because they both yield
 
 ## Problem 2. Personal Data
 ### a.
+```{r}
+# organize day of week column so variable shows up in chronological order
+# instead of alphabetical
+my_data$day_of_the_week <- factor(my_data$day_of_the_week,
+levels = c("Monday", "Tuesday", "Wednesday",
+"Thursday", "Friday", "Saturday",
+"Sunday"))
+# create plot, assign x and y values.
+# X is a categorical predictor variable, Y is response variable.
+ggplot(my_data, aes(x = day_of_the_week, y = perceived_stress_level))+
+
+# create jitter plot with custom color
+geom_jitter(height = 0,
+            width = 0.1,
+            shape = 21,
+            size = 4,,
+            fill = "lightpink",
+            alpha = 0.8,
+            color = "hotpink") +
+# change graph title and axis titles
+
+labs(title = "Perceived Stress by Day of the Week",
+     subtitle = "5//2026",
+x = "Day of the Week",
+y = "Perceived Stress Level (1-5)")+
+  
+# change theme
+  theme_bw()+
+# remove grid
+  theme(panel.grid = element_blank())
+```
+
+```{r}
+# create plot, assign x and y values
+# X is my discrete predictor variable, Y is response variable.
+ggplot(my_data, aes(x = daily_step_count, y = perceived_stress_level))+
+#create jitter plot with custom color
+geom_point(shape = 19,
+            size = 3,
+           alpha = 0.7,
+           color = "#F8766D") +
+# change graph title and axis titles
+labs(title = "Perceived Stress vs Daily Step Count",
+     subtitle = "5//2026",
+x = "Daily Step Count (steps)",
+y = "Perceived Stress Level (1-5)")+
+
+# choosing non-default theme
+  theme_bw()+
+  
+# remove grid
+  theme(panel.grid = element_blank())
+```
+
+
+
 ### b.
 
 ## Problem 3. Affective Visualization
