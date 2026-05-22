@@ -1,5 +1,5 @@
 ---
-title: "homework-03"
+title: "Homework 03"
 author: Jocelyn Magner
 date: 5/20/2026
 format:
@@ -83,7 +83,7 @@ Looking at diagnostic QQ plot, the data appears normally distributed since the d
 Finally, the assumption of independent variables is a potential limitation since the study design does not explicitly say if the kelp fronds were isolated in separate, independently regulated tanks; however, we are going to proceed with the analysis.
 
 
-### Run a correlation test
+#### Run a correlation test
 
 ```{r}
 #| echo: true
@@ -107,10 +107,10 @@ Temperature (in degrees Celsius) (Pearson's r = -0.69, t(30) = -5.19, p < 0.01, 
 Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. To maximize conservation efforts I would suggest prioritizing protecting the cooler areas where kelp has higher chances of survival.
 
 
-### f.
+### f. Run Other Correlation Test
 ```{r}
 #| echo: true
-# Run Pearson Correlation test
+# Run Spearman Correlation test
 cor.test(temp_kelp$kelp_elong, # predicted/y value
          temp_kelp$temp_c,     # predictor/x value
          method = "spearman")  # change method to spearman
@@ -178,7 +178,7 @@ y = "Perceived Stress Level (1-5)")+
 
 ### b. Captions
 
-**Figure 1. Day of the week appears to have little impact on daily perceived stress level.** The pink circles represent a single day's self-reported stress level on a scale of 1-5. They are jittered and semi-transparent to show overlapping points. Days of the week are represented on th x axis, ordered from Monday to Sunday. There appears to be examples of low stress everyday of the week and high stress almost everyday. Tuesdays, Fridays, and Sundays tend to be lower stress. Thursdays appear to be the highest stress day of the week. Day of the week is the categorical predictor variable and stress is the response variable.
+**Figure 1. Day of the week appears to have little impact on perceived stress level.** Each pink circle represents a single day's self-reported stress level on a scale of 1-5. The points are jittered and semi-transparent to show overlapping points. Days of the week are represented on the x axis, ordered from Monday to Sunday. There appears to be examples of low stress everyday of the week and high stress almost everyday. Tuesdays, Fridays, and Sundays tend to be lower stress. Thursdays appear to be the highest stress day of the week. Day of the week is the categorical predictor variable and stress is the response variable.
 
 **Figure 2. There appears to be a potential negative linear relationship between perceived stress level and daily step count.** The navy blue dots represent a single day's self-reported stress level on a scale of 1-5 and are ordered on the x axis by daily step count recorded by a fitbit watch. Daily step count is the discrete predictor variable and stress is the response variable. 
 
