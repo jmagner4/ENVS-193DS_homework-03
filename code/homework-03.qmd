@@ -8,9 +8,6 @@ format:
 execute:
   message: false # use this to make sure messages don't show up
   warning: false # use this to make sure warnings don't show up
-editor: 
-  markdown: 
-    wrap: sentence
 ---
 
 # Set up
@@ -201,29 +198,26 @@ Daily step count is the discrete predictor variable and stress is the categorica
 
 ### a.
 
-I imagine an affective visualization for day of the week vs stress relationship could be represented by circles in a circle since the days of the week feel circular to me.
-The size and color of each circle could represent the more stressful days and maybe more jagged outlines for the more stressful days.
-I could imagine for the step count vs stress something more like Jill Pelto's work, nature inspired.
-I could see a mountain representing steps it takes to get to a less stressed mindset since I observed a potential linear relationship.
-Either of these could be done in watercolor for a final draft.
+I imagine an affective visualization for my step count vs stress could be expressed through a watercolor painting incorporating nature elements like Jill Pelto's work.
+I could see a mountain representing steps it takes to get to a less stressed mindset since I observed a potential linear relationship suggesting more steps leads to less stress.
+I could use colors to convey emotion (ex. sunny bright yellow representing less stressed and gray-blue skies to represent more stressed).
 
-### b.
+### b. Affective Sketch
 
 ![](images/affective_sketch-01.jpg)
 
-### c.
+### c. Affective draft
 
-### d.
+![](images/IMG_3072.jpg)
 
-Context: This piece represents my daily step count's relationship with my daily perceived stress level.
+### d. Artist Statement
 
-Influences: I was inspired by Jill Pelto's paintings.
+This watercolor painting represents the relationship between my daily step counts and my daily perceived stress level. I was inspired by Jill Pelto's paintings.
+I started my process by drafting with pencil and paper, created a digital rendition on my iPad to get a more solidified idea of color placement and finally, I mapped my design onto watercolor paper and painted my final draft.
 
-Form: I will complete my final design in watercolor paint.
+### e. Affective Visualization Presentation
 
-Process: I started my process by drafting with pencil and paper. I then made a digital redition with color. Finally I mapped my digital design onto water color paper and painted the final design.
-
-### e.
+[View Presentation](https://docs.google.com/presentation/d/1glp9oR2FnJ8XfaEktwrQycuCjJGYJR0yKOwzFoXmA-U/edit?usp=sharing)
 
 ## Problem 4. Statistical Critique
 
