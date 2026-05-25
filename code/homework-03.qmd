@@ -180,7 +180,7 @@ y = "Perceived Stress Level (1-5)")+
 
 ## Problem 3. Affective Visualization
 
-### a.
+### a. Affective visualization ideas
 
 I imagine an affective visualization for my step count vs stress could be expressed through a watercolor painting incorporating nature elements like Jill Pelto's work. I could see a mountain representing steps it takes to get to a less stressed mindset since I observed a potential linear relationship suggesting more steps leads to less stress. I could use colors to convey emotion (ex. sunny bright yellow representing less stressed and gray-blue skies to represent more stressed).
 
@@ -202,22 +202,22 @@ This watercolor painting represents the relationship between my daily step count
 
 ## Problem 4. Statistical Critique
 
-### a.
+### a. Revisit and Summarize
 
 The main research question is "What are the impacts of farming system (organic vs conventional) and landscape heterogeneity (large scale vs small scale) on butterfly diversity and species composition?" 
 A Pearson correlation test is used in this paper. This test led the researchers to suggest that landscape heterogeneity is an important factor in butterfly diversity. A “significant” result would lead them to suggest there is a positive correlation between butterfly diversity and small-scale landscape heterogeneity.
 
 ![](images/statimage.png)
 
-### b.
+### b. Visual Clarity
 
 The authors visually represented their statistics in figures well. The one shown above clearly shows the positive linear relationship suggested by the pearson correlation test. The axes make sense; the predictor variable (landscape heterogeneity) is on the x axis and the response variable (butterfly diversity) on the y-axis. Summary statistics are not shown, but the model prediction is represented by a line and underlying data is shown.
 
-### c.
+### c. Aesthetic Clarity
 
 The authors kept visual clutter low and kept a high data to ink ratio by removing grid lines, keeping the background white, differentiating points by shape rather than color, only using a single trend line (no ribbon), only used axis lines (no box around the graph), and used concise but descriptive axis labels. 
 
-### d.
+### d. Recomendations
 
 While it is not uncommon to keep the y-axis text sideways, it would improve instant readability to rotate it clockwise 90 degrees so the text is horizontal. Honestly I think the scale, shapes, size of points, and line width I would keep the same. If I could add color I may change the point colors to stand out from the line better, for example red triangles and blue circles. This would improve visual clarity particularly for the point where the one circle touches the line.
 
