@@ -32,9 +32,7 @@ temp_kelp <- read_csv(here("data", "temp-kelp.csv"))
 
 ### a. An Appropriate Test
 
-Pearson and Spearman correlations could be used to determine strength of the relationship between temperature and giant kelp frond elongation rate assuming observations are independent.
-Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed.
-Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
+Pearson and Spearman correlations could be used to determine strength of the relationship between temperature and giant kelp frond elongation rate assuming observations are independent. Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
 
 ### b. Visualizing Data
 
@@ -82,10 +80,7 @@ plot(temp_kelp_model)
 
 To check the assumptions of a Pearson correlation test I evaluated the linearity, continuous data, normality and independence of observations.
 
-I checked linearity by looking at the scatter plot generated in 1b; if I drew a line from the lowest temp/highest growth rate point to one of the high-temp/low-growth points the data would fall around that line.
-Temperature and growth rate are both continuous variables (they can be measured to decimal places or fractions).
-Looking at diagnostic QQ plot, the data appears normally distributed since the data follows the line closely only deviating strongly in the tails which is acceptable.
-Finally, the assumption of independent variables is a potential limitation since the study design does not explicitly say if the kelp fronds were isolated in separate, independently regulated tanks; however, we are going to proceed with the analysis.
+I checked linearity by looking at the scatter plot generated in 1b; if I drew a line from the lowest temp/highest growth rate point to one of the high-temp/low-growth points the data would fall around that line. Temperature and growth rate are both continuous variables (they can be measured to decimal places or fractions). Looking at diagnostic QQ plot, the data appears normally distributed since the data follows the line closely only deviating strongly in the tails which is acceptable. Finally, the assumption of independent variables is a potential limitation since the study design does not explicitly say if the kelp fronds were isolated in separate, independently regulated tanks; however, we are going to proceed with the analysis.
 
 #### Run a correlation test
 
@@ -99,15 +94,13 @@ cor.test(temp_kelp$kelp_elong, # predicted/y value
 
 ### d. Results Communication
 
-To evaluate the strength of the relationship between temperature and giant kelp frond elongation rate, I used a Pearson's Correlation test.
-The data appears to be normally distributed based on the QQ plot diagnostic test meaning this parametric test is fitting.
+To evaluate the strength of the relationship between temperature and giant kelp frond elongation rate, I used a Pearson's Correlation test. The data appears to be normally distributed based on the QQ plot diagnostic test meaning this parametric test is fitting.
 
 We found a moderate-to-strong negative relationship between giant kelp frond elongation rate (in cm/day) and Temperature (in degrees Celsius) (Pearson's r = -0.69, t(30) = -5.19, p \< 0.01, α = 0.05).
 
 ### e. Test Implications
 
-Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p\< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise.
-To maximize conservation efforts I would suggest prioritizing protecting the cooler areas where kelp has higher chances of survival.
+Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p\< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. To maximize conservation efforts I would suggest prioritizing protecting the cooler areas where kelp has higher chances of survival.
 
 ### f. Run Other Correlation Test
 
@@ -119,9 +112,7 @@ cor.test(temp_kelp$kelp_elong, # predicted/y value
          method = "spearman")  # change method to spearman
 ```
 
-Both of these test lead me to reject the null hypothesis because they both yielded a p-value \< 0.01.
-Both methods lead to me to say there is a moderate-to-strong negative relationship between water temperature and giant kelp frond elongation rate because the Spearman rank coefficient ($\rho$ = -0.689) is close to the Pearson correlation coefficient (Pearson's r = -0.688).
-This directly relates to the variables by confirming that as the continuous variable of water temperature increases, the giant kelp frond elongation rate decreases, a trend that remains robust whether measured linearly (with Pearson) or monotonically through ranked data (with Spearman).
+Both of these test lead me to reject the null hypothesis because they both yielded a p-value \< 0.01. Both methods lead to me to say there is a moderate-to-strong negative relationship between water temperature and giant kelp frond elongation rate because the Spearman rank coefficient ($\rho$ = -0.689) is close to the Pearson correlation coefficient (Pearson's r = -0.688). This directly relates to the variables by confirming that as the continuous variable of water temperature increases, the giant kelp frond elongation rate decreases, a trend that remains robust whether measured linearly (with Pearson) or monotonically through ranked data (with Spearman).
 
 ## Problem 2. Personal Data
 
@@ -183,24 +174,15 @@ y = "Perceived Stress Level (1-5)")+
 
 ### b. Captions
 
-**Figure 1. Day of the week appears to have little impact on perceived stress level.** Each pink circle represents a single day's self-reported stress level on a scale of 1-5.
-The points are jittered and semi-transparent to show overlapping points.
-Days of the week are represented on the x axis, ordered from Monday to Sunday.
-There appears to be examples of low stress everyday of the week and high stress almost everyday.
-Tuesdays, Fridays, and Sundays tend to be lower stress.
-Wednesdays, Thursdays, and Saturdays appear to be the highest stress day of the week.
-Day of the week is the categorical predictor variable and stress is the categorical response variable.
+**Figure 1. Day of the week appears to have little impact on perceived stress level.** Each pink circle represents a single day's self-reported stress level on a scale of 1-5. The points are jittered and semi-transparent to show overlapping points. Days of the week are represented on the x axis, ordered from Monday to Sunday. There appears to be examples of low stress everyday of the week and high stress almost everyday. Tuesdays, Fridays, and Sundays tend to be lower stress. Wednesdays, Thursdays, and Saturdays appear to be the highest stress day of the week. Day of the week is the categorical predictor variable and stress is the categorical response variable.
 
-**Figure 2. There appears to be a potential negative linear relationship between perceived stress level and daily step count.** The navy blue dots represent a single day's self-reported stress level on a scale of 1-5 and are ordered on the x axis by daily step count recorded by a fitbit watch.
-Daily step count is the discrete predictor variable and stress is the categorical response variable.
+**Figure 2. There appears to be a potential negative linear relationship between perceived stress level and daily step count.** The navy blue dots represent a single day's self-reported stress level on a scale of 1-5 and are ordered on the x axis by daily step count recorded by a fitbit watch. Daily step count is the discrete predictor variable and stress is the categorical response variable.
 
 ## Problem 3. Affective Visualization
 
 ### a.
 
-I imagine an affective visualization for my step count vs stress could be expressed through a watercolor painting incorporating nature elements like Jill Pelto's work.
-I could see a mountain representing steps it takes to get to a less stressed mindset since I observed a potential linear relationship suggesting more steps leads to less stress.
-I could use colors to convey emotion (ex. sunny bright yellow representing less stressed and gray-blue skies to represent more stressed).
+I imagine an affective visualization for my step count vs stress could be expressed through a watercolor painting incorporating nature elements like Jill Pelto's work. I could see a mountain representing steps it takes to get to a less stressed mindset since I observed a potential linear relationship suggesting more steps leads to less stress. I could use colors to convey emotion (ex. sunny bright yellow representing less stressed and gray-blue skies to represent more stressed).
 
 ### b. Affective Sketch
 
@@ -212,8 +194,7 @@ I could use colors to convey emotion (ex. sunny bright yellow representing less 
 
 ### d. Artist Statement
 
-This watercolor painting represents the relationship between my daily step counts and my daily perceived stress level. I was inspired by Jill Pelto's paintings.
-I started my process by drafting with pencil and paper, created a digital rendition on my iPad to get a more solidified idea of color placement and finally, I mapped my design onto watercolor paper and painted my final draft.
+This watercolor painting represents the relationship between my daily step counts and my daily perceived stress level. I was inspired by Jill Pelto's paintings. I started my process by drafting with pencil and paper, created a digital rendition on my iPad to get a more solidified idea of color placement and finally, I mapped my design onto watercolor paper and painted my final draft.
 
 ### e. Affective Visualization Presentation
 
@@ -222,6 +203,12 @@ I started my process by drafting with pencil and paper, created a digital rendit
 ## Problem 4. Statistical Critique
 
 ### a.
+
+
+The main research question is "What are the impacts of farming system (organic vs conventional) and landscape heterogeneity (large scale vs small scale) on butterfly diversity and species composition?" 
+A Pearson correlation test is used in this paper. This test led the researchers to suggest that landscape heterogeneity is an important factor in butterfly diversity. A “significant” result would lead them to suggest there is a positive correlation between butterfly diversity and small-scale landscape heterogeneity.
+
+![](images/statimage.png)
 
 ### b.
 
