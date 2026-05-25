@@ -215,4 +215,6 @@ The authors visually represented their statistics in figures well. The one shown
 
 ### c.
 
+The authors kept visual clutter low and kept a high data to ink ratio by removing grid lines, keeping the background white, differentiating points by shape rather than color, only using a single trend line (no ribbon), only used axis lines (no box around the graph), and used concise but descriptive axis labels. 
+
 ### d.
