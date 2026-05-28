@@ -1,7 +1,7 @@
 ---
 title: "Homework 03"
 author: Jocelyn Magner
-date: 5/20/2026
+date: 5/27/2026
 format:
   pdf:
     toc: true #  display a table of contents
@@ -13,6 +13,7 @@ execute:
 # Set up
 
 ```{r}
+# read in packages
 library(tidyverse)
 library(here)
 library(janitor)
@@ -32,11 +33,11 @@ temp_kelp <- read_csv(here("data", "temp-kelp.csv"))
 
 ### a. An Appropriate Test
 
-Pearson and Spearman correlations could be used to determine strength of the relationship between temperature and giant kelp frond elongation rate assuming observations are independent. Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
+Pearson and Spearman correlations could be used to determine strength of the relationship between ocean temperature and giant kelp frond elongation rate assuming observations are independent. Pearson's correlation also assumes a linear relationship exists and it is a parametric test meaning it assumes variables are normally distributed. Spearman's correlation assumes a monotonic relationship and it is a nonparametric test meaning normality is not an assumption.
 
 ### b. Visualizing Data
 
-Showing the relationship between temperature and giant kelp frond elongation rate.
+Showing the relationship between ocean temperature and giant kelp frond elongation rate.
 
 ```{r}
 # plot raw data points to observe potential linear relationship
@@ -46,6 +47,7 @@ ggplot(data = temp_kelp,
        # assign data to axes
        aes(x = temp_c,
            y = kelp_elong))+
+  
 # first layer: add scatter points
   geom_point(size = 2,
              stroke = 0.5,
@@ -53,12 +55,12 @@ ggplot(data = temp_kelp,
              shape = 21)+
   
 # relabel axis with units
-  labs(x = "Temperature (°C)",
+  labs(x = "Ocean Temperature (°C)",
        y = "Giant Kelp Frond Growth Rate (cm/day)")+
+  
 # change theme
   theme_light()+
   theme(panel.grid = element_blank())
-# data appears fairly linear, proceed with diagnostic tests
 ```
 
 ### c. Check Assumptions and Run Test
@@ -67,6 +69,7 @@ ggplot(data = temp_kelp,
 #| echo: true
 #| fig-width: 8
 #| fig-height: 8
+
 # create object storing linear model data to perform diagnostic tests
 temp_kelp_model <- lm(kelp_elong~temp_c,
    data = temp_kelp)
@@ -94,13 +97,13 @@ cor.test(temp_kelp$kelp_elong, # predicted/y value
 
 ### d. Results Communication
 
-To evaluate the strength of the relationship between temperature and giant kelp frond elongation rate, I used a Pearson's Correlation test. The data appears to be normally distributed based on the QQ plot diagnostic test meaning this parametric test is fitting.
+To evaluate the strength of the relationship between ocean temperature and giant kelp frond elongation rate, I used a Pearson's Correlation test. The data appears to be normally distributed based on the QQ plot diagnostic test meaning this parametric test is fitting.
 
-We found a moderate-to-strong negative relationship between giant kelp frond elongation rate (in cm/day) and Temperature (in degrees Celsius) (Pearson's r = -0.69, t(30) = -5.19, p \< 0.01, α = 0.05).
+We found a moderate negative relationship between giant kelp frond elongation rate (in cm/day) and ocean temperature (in degrees Celsius) (Pearson's r = -0.69, t(30) = -5.19, p < 0.01, $\alpha$ = 0.05).
 
 ### e. Test Implications
 
-Our tests suggest a moderately strong statistically significant negative relationship (r = -0.69, p\< 0.01) between temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. To maximize conservation efforts I would suggest prioritizing protecting the cooler areas where kelp has higher chances of survival.
+Our test suggest a moderate negative relationship between ocean temperature and kelp growth, meaning that giant kelp frond elongations rates decrease as water temperatures rise. As our ocean temperatures rise from climate change kelp will continue to have its growth stunted. To maximize giant kelp conservation efforts I would suggest prioritizing protecting the cooler areas of the ocean where giant kelp has higher chances of survival. 
 
 ### f. Run Other Correlation Test
 
@@ -112,7 +115,7 @@ cor.test(temp_kelp$kelp_elong, # predicted/y value
          method = "spearman")  # change method to spearman
 ```
 
-Both of these test lead me to reject the null hypothesis because they both yielded a p-value \< 0.01. Both methods lead to me to say there is a moderate-to-strong negative relationship between water temperature and giant kelp frond elongation rate because the Spearman rank coefficient ($\rho$ = -0.689) is close to the Pearson correlation coefficient (Pearson's r = -0.688). This directly relates to the variables by confirming that as the continuous variable of water temperature increases, the giant kelp frond elongation rate decreases, a trend that remains robust whether measured linearly (with Pearson) or monotonically through ranked data (with Spearman).
+Both of these test lead me to reject the null hypothesis because they both yielded a p-value < 0.01. Both methods lead to me to say there is a moderate negative relationship between ocean water temperature and giant kelp frond elongation rate because the Spearman rank coefficient ($\rho$ = -0.689) is close to the Pearson correlation coefficient (Pearson's r = -0.688). This directly relates to the variables by confirming that as the continuous variable of ocean temperature increases, the giant kelp frond elongation rate decreases, a trend that remains robust whether measured linearly (with Pearson) or monotonically through ranked data (with Spearman).
 
 ## Problem 2. Personal Data
 
@@ -125,6 +128,7 @@ my_data$day_of_the_week <- factor(my_data$day_of_the_week,
 levels = c("Monday", "Tuesday", "Wednesday",
 "Thursday", "Friday", "Saturday",
 "Sunday"))
+
 # create plot, assign x and y values.
 # X is a categorical predictor variable, Y is response variable.
 ggplot(my_data, aes(x = day_of_the_week, y = perceived_stress_level))+
@@ -137,15 +141,16 @@ geom_jitter(height = 0,
             fill = "lightpink",
             alpha = 0.8,
             color = "hotpink") +
+  
 # change graph title and axis titles
-
 labs(title = "Perceived Stress by Day of the Week",
-     subtitle = "5/22/2026",
+     subtitle = "5/27/2026",
 x = "Day of the Week",
 y = "Perceived Stress Level (1-5)")+
   
 # change theme
   theme_bw()+
+  
 # remove grid
   theme(panel.grid = element_blank())
 ```
@@ -154,14 +159,16 @@ y = "Perceived Stress Level (1-5)")+
 # create plot, assign x and y values
 # X is my discrete predictor variable, Y is response variable.
 ggplot(my_data, aes(x = daily_step_count, y = perceived_stress_level))+
-#create plot with custom color
+
+# create plot with custom color
 geom_point(shape = 19,
             size = 3,
            alpha = 0.7,
            color = "#003660") +
+  
 # change graph title and axis titles
 labs(title = "Perceived Stress vs Daily Step Count",
-     subtitle = "5/22/2026",
+     subtitle = "5/27/2026",
 x = "Daily Step Count (steps)",
 y = "Perceived Stress Level (1-5)")+
 
@@ -176,13 +183,13 @@ y = "Perceived Stress Level (1-5)")+
 
 **Figure 1. Day of the week appears to have little impact on perceived stress level.** Each pink circle represents a single day's self-reported stress level on a scale of 1-5. The points are jittered and semi-transparent to show overlapping points. Days of the week are represented on the x axis, ordered from Monday to Sunday. There appears to be examples of low stress everyday of the week and high stress almost everyday. Tuesdays, Fridays, and Sundays tend to be lower stress. Wednesdays, Thursdays, and Saturdays appear to be the highest stress day of the week. Day of the week is the categorical predictor variable and stress is the categorical response variable.
 
-**Figure 2. There appears to be a potential negative linear relationship between perceived stress level and daily step count.** The navy blue dots represent a single day's self-reported stress level on a scale of 1-5 and are ordered on the x axis by daily step count recorded by a fitbit watch. Daily step count is the discrete predictor variable and stress is the categorical response variable.
+**Figure 2. There appears to be a potential negative linear relationship between perceived stress level and daily step count.** The navy blue points represent a single day's self-reported stress level on a scale of 1-5 and are ordered on the x axis by daily step count recorded by a fitbit watch. Daily step count is the discrete predictor variable and stress is the categorical response variable.
 
 ## Problem 3. Affective Visualization
 
 ### a. Affective visualization ideas
 
-I imagine an affective visualization for my step count vs stress could be expressed through a watercolor painting incorporating nature elements like Jill Pelto's work. I could see a mountain representing steps it takes to get to a less stressed mindset since I observed a potential linear relationship suggesting more steps leads to less stress. I could use colors to convey emotion (ex. sunny bright yellow representing less stressed and gray-blue skies to represent more stressed).
+I envision an affective data visualization tha translates my daily step count and stress levels into a watercolor landscape. I was very inspired by the nature-focuesd work of Jill Pelto, but I want to give it a slightly cartoonish aesthetic. A central mountain could serve as the focal point symbolizing the physical steps it takes to climb to a calmer state of mind. I could use colors of the sky to convey emotion, for example using a sunny bright yellow to represent less stressed and gray-blue skies to represent more stressed.
 
 ### b. Affective Sketch
 
