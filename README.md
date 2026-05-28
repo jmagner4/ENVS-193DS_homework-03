@@ -13,18 +13,26 @@ Jocelyn Magner is the only contributor
 
 ```
 .
-├── README.md
-├── code
-│   ├── homework-03.pdf
-│   ├── homework-03.qmd
-│   └── images
-├── data
-│   ├── affective_sketch.jpg
-│   ├── IMG_3072.jpg
-│   ├── personaldataproject.csv
-│   ├── statimage.png
-│   └── temp-kelp.csv
-└── ENVS-193DS_homework-03.Rproj
+│   README.md
+│
+├───code
+│   │   homework-03.pdf
+│   │   homework-03.qmd
+│   │
+│   └───images
+│           affective_sketch-01.jpg
+│           affective_sketch.jpg
+│           IMG_3067.HEIC
+│           IMG_3072.heic
+│           IMG_3072.jpg
+│           statimage.png
+│
+└───data
+        affective_sketch.jpg
+        IMG_3072.jpg
+        personaldataproject.csv
+        statimage.png
+        temp-kelp.csv
 ```
 
 ## Rendered output
