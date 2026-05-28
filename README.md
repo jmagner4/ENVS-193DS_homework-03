@@ -4,7 +4,7 @@
 
 This repo is for Homework 3. This includes exploring Pearson vs Spearman correlation with the giant kelp frond data set, exploring my personal data project and potential affective visualization, and finally revisiting the statistical critique from homework 2. 
 
-Whose repo is it? This is an original repo.
+Whose repo is it? This is an original repo by Jocelyn Magner
 
 Who is contributing to it?
 Jocelyn Magner is the only contributor
