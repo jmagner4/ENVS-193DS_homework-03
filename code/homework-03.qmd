@@ -66,24 +66,41 @@ ggplot(data = temp_kelp,
 ### c. Check Assumptions and Run Test
 
 ```{r}
-#| echo: true
-#| fig-width: 8
-#| fig-height: 8
+# check normality of kelp elongation rate
+# base layer ggplot
+ggplot(data = temp_kelp, mapping = aes(sample = kelp_elong)) +
+  
+# add sample points
+  geom_qq() +
+  
+# add reference line
+  geom_qq_line()
 
-# create object storing linear model data to perform diagnostic tests
-temp_kelp_model <- lm(kelp_elong~temp_c,
-   data = temp_kelp)
+```
+```{r}
+# check normality of temperature variable
+# base layer ggplot
+ggplot(data = temp_kelp, mapping = aes(sample = temp_c)) +
+  
+# add sample points
+  geom_qq() +
+  
+# add reference line
+  geom_qq_line()
 
-# diagnostic plots
-par(mfrow = c(2,2))
-plot(temp_kelp_model)
 ```
 
 #### Assumption of Pearson's correlation
 
 To check the assumptions of a Pearson correlation test I evaluated the linearity, continuous data, normality and independence of observations.
 
-I checked linearity by looking at the scatter plot generated in 1b; if I drew a line from the lowest temp/highest growth rate point to one of the high-temp/low-growth points the data would fall around that line. Temperature and growth rate are both continuous variables (they can be measured to decimal places or fractions). Looking at diagnostic QQ plot, the data appears normally distributed since the data follows the line closely only deviating strongly in the tails which is acceptable. Finally, the assumption of independent variables is a potential limitation since the study design does not explicitly say if the kelp fronds were isolated in separate, independently regulated tanks; however, we are going to proceed with the analysis.
+I checked linearity by looking at the scatter plot generated in 1b; if I imagine a line from the lowest temp/highest growth rate point to one of the high-temp/low-growth points the data would fall around that line. 
+
+Temperature and growth rate are both continuous variables (they can be measured to decimal places or fractions).
+
+To assess normality I created two QQ plots. One for temperature and one for kelp elongation rate. Looking at both diagnostic QQ plots, the data appears normally distributed since the data follows the line fairly close only deviating strongly in the tails which is acceptable.
+
+Finally, the assumption of independent variables is a potential limitation since the study design does not explicitly say if the kelp fronds were isolated in separate, independently regulated tanks; however, we are going to proceed with the analysis.
 
 #### Run a correlation test
 
@@ -155,6 +172,31 @@ y = "Perceived Stress Level (1-5)")+
   theme(panel.grid = element_blank())
 ```
 
+
+More interesting interpretation:
+
+```{r}
+# keep your original factor sorting so days stay chronological
+my_data$day_of_the_week <- factor(my_data$day_of_the_week, levels = c("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"))
+
+# map day to x, and stress to y
+ggplot(my_data, aes(x = day_of_the_week, y = perceived_stress_level)) +
+  
+  # stat="summary" and fun="sum" will add up the stress levels automatically
+  geom_bar(stat = "summary", fun = "sum", fill = "lightpink", color = "hotpink", alpha = 0.8) +
+  
+  # update labels
+  labs(title = "Total Perceived Stress by Day of the Week", 
+       subtitle = "5/27/2026", 
+       x = "Day of the Week", 
+       y = "Total Stress Level") +
+  theme_bw() +
+  theme(panel.grid = element_blank())
+
+
+```
+
+
 ```{r}
 # create plot, assign x and y values
 # X is my discrete predictor variable, Y is response variable.
@@ -178,6 +220,33 @@ y = "Perceived Stress Level (1-5)")+
 # remove grid
   theme(panel.grid = element_blank())
 ```
+
+Other variables:
+
+```{r}
+# create plot, assign x and y values
+# X is my continuous predictor variable, Y is response variable.
+ggplot(my_data, aes(x = academic_homework_load, y = perceived_stress_level))+
+
+# create plot with custom color
+geom_point(shape = 19,
+            size = 3,
+           alpha = 0.7,
+           color = "#9E86FA") +
+  
+# change graph title and axis titles
+labs(title = "Perceived Stress vs Academic Homework Load",
+     subtitle = "5/27/2026",
+x = "Academic Homework Load (hours)",
+y = "Daily Perceived Stress Level (1-5)")+
+
+# choosing non-default theme
+  theme_bw()+
+  
+# remove grid
+  theme(panel.grid = element_blank())
+```
+
 
 ### b. Captions
 
